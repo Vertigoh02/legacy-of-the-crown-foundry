@@ -2,7 +2,7 @@
   "id": "legacy-of-the-crown",
   "title": "Legacy of the Crown",
   "description": "Système de jeu non-officiel pour Foundry VTT, adapté du jeu de rôle Legacy of the Crown.",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "compatibility": {
     "minimum": "12",
     "verified": "13"
@@ -30,8 +30,8 @@
     "units": "m"
   },
   "background": "",
-  "url": "",
-  "manifest": "",
-  "download": "",
+  "url": "https://github.com/Vertigoh02/legacy-of-the-crown-foundry",
+  "manifest": "https://raw.githubusercontent.com/Vertigoh02/legacy-of-the-crown-foundry/refs/heads/main/system.json",
+  "download": "https://github.com/Vertigoh02/legacy-of-the-crown-foundry/archive/refs/heads/main.zip",
   "license": "LICENSE.txt"
 }
