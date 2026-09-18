@@ -1,0 +1,220 @@
+.legacy-of-the-crown.sheet {
+  font-family: "Signika", sans-serif;
+  color: #221a13;
+}
+
+.lotc-sheet {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.lotc-entete {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: 2px solid #6b1d1d;
+  padding-bottom: 0.5rem;
+}
+
+.lotc-portrait {
+  width: 72px;
+  height: 72px;
+  border: 2px solid #6b1d1d;
+  border-radius: 4px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.lotc-identite {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.lotc-identite input[name="name"] {
+  font-size: 1.4rem;
+  font-weight: bold;
+  border: none;
+  background: transparent;
+  border-bottom: 1px solid #999;
+}
+
+.lotc-identite-ligne {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.85rem;
+}
+
+.lotc-identite-ligne label {
+  display: flex;
+  flex-direction: column;
+}
+
+.lotc-bloc {
+  border: 1px solid #b8a48a;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.lotc-bloc h2 {
+  margin: 0 0 0.35rem 0;
+  font-size: 1rem;
+  border-bottom: 1px solid #b8a48a;
+  color: #6b1d1d;
+}
+
+.lotc-bloc-titre {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lotc-grille-caracteristiques,
+.lotc-grille-derivees {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.lotc-caracteristique,
+.lotc-jauge,
+.lotc-statique {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+}
+
+.lotc-caracteristique input,
+.lotc-jauge input {
+  width: 3.5rem;
+  text-align: center;
+}
+
+.lotc-table-competences,
+.lotc-table-objets {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.lotc-table-competences th,
+.lotc-table-competences td,
+.lotc-table-objets td {
+  padding: 0.2rem 0.4rem;
+  border-bottom: 1px solid #eee;
+}
+
+.lotc-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6b1d1d;
+}
+
+.lotc-astuce {
+  font-size: 0.75rem;
+  color: #666;
+  margin: 0.25rem 0;
+}
+
+.lotc-liste-capacites {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lotc-liste-capacites li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding: 0.25rem 0;
+}
+
+.lotc-biographie textarea {
+  width: 100%;
+  min-height: 100px;
+}
+
+.lotc-jet h3 {
+  margin: 0 0 0.25rem 0;
+}
+
+.lotc-issue--reussite { color: #1b6b1b; }
+.lotc-issue--echec { color: #6b1d1d; }
+
+.lotc-champ {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.lotc-champ-description textarea {
+  min-height: 80px;
+}
+
+.lotc-classe-active {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.lotc-classe-active input {
+  width: 3rem;
+  text-align: center;
+}
+
+.lotc-rang {
+  border: 1px solid #b8a48a;
+  border-radius: 4px;
+  margin-bottom: 0.6rem;
+  padding: 0.4rem 0.6rem;
+}
+
+.lotc-rang legend {
+  font-weight: bold;
+  color: #6b1d1d;
+  padding: 0 0.4rem;
+}
+
+.lotc-rang textarea {
+  min-height: 60px;
+  font-family: monospace;
+  font-size: 0.8rem;
+}
+
+.lotc-influence {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed #b8a48a;
+  font-size: 0.85rem;
+}
+
+.lotc-carte-en-main {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border: 1px dashed #6b1d1d;
+  border-radius: 4px;
+  background: rgba(107, 29, 29, 0.05);
+  font-size: 0.85rem;
+}
+
+.lotc-carte-en-main button {
+  margin-left: 0.5rem;
+}

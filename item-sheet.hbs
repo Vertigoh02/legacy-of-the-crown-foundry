@@ -1,0 +1,88 @@
+<section class="lotc-sheet lotc-sheet-objet">
+
+  <header class="lotc-entete">
+    <img class="lotc-portrait lotc-portrait-objet" src="{{item.img}}" data-edit="img" alt="{{item.name}}">
+    <input type="text" name="name" value="{{item.name}}" placeholder="Nom">
+  </header>
+
+  {{#if (eq item.type "competence")}}
+  <div class="lotc-champ">
+    <label>Caractéristique associée</label>
+    <select name="system.caracteristique">
+      {{#each caracteristiques as |libelle cle|}}
+      <option value="{{cle}}" {{#if (eq cle systeme.caracteristique)}}selected{{/if}}>{{libelle}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <div class="lotc-champ">
+    <label>Valeur brute (0 à 50)</label>
+    <input type="number" min="0" max="50" name="system.valeurBrute" value="{{systeme.valeurBrute}}">
+  </div>
+  <div class="lotc-champ">
+    <label>Valeur réelle (calculée)</label>
+    <output>{{systeme.valeurReelle}}</output>
+  </div>
+  {{/if}}
+
+  {{#if (eq item.type "arme")}}
+  <div class="lotc-champ"><label>Catégorie</label><input type="text" name="system.categorie" value="{{systeme.categorie}}"></div>
+  <div class="lotc-champ"><label>Compétence associée</label><input type="text" name="system.competenceAssociee" value="{{systeme.competenceAssociee}}"></div>
+  <div class="lotc-champ"><label>Dégâts</label><input type="text" name="system.degats" value="{{systeme.degats}}"></div>
+  <div class="lotc-champ"><label>Portée</label><input type="text" name="system.portee" value="{{systeme.portee}}"></div>
+  <div class="lotc-champ"><label>Poids (Encombrement)</label><input type="number" name="system.poids" value="{{systeme.poids}}"></div>
+  <div class="lotc-champ"><label>Prix (£)</label><input type="number" name="system.prix" value="{{systeme.prix}}"></div>
+  {{/if}}
+
+  {{#if (eq item.type "equipement")}}
+  <div class="lotc-champ"><label>Quantité</label><input type="number" name="system.quantite" value="{{systeme.quantite}}"></div>
+  <div class="lotc-champ"><label>Poids (Encombrement)</label><input type="number" name="system.poids" value="{{systeme.poids}}"></div>
+  <div class="lotc-champ"><label>Prix (£)</label><input type="number" name="system.prix" value="{{systeme.prix}}"></div>
+  {{/if}}
+
+  {{#if (eq item.type "capacite")}}
+  <div class="lotc-champ">
+    <label>Type</label>
+    <select name="system.type">
+      <option value="passive" {{#if (eq systeme.type "passive")}}selected{{/if}}>Passive</option>
+      <option value="active" {{#if (eq systeme.type "active")}}selected{{/if}}>Active</option>
+    </select>
+  </div>
+  <div class="lotc-champ"><label>Rang requis</label><input type="number" name="system.rang" value="{{systeme.rang}}"></div>
+  {{/if}}
+
+  {{#if (eq item.type "maitrise")}}
+  <div class="lotc-champ"><label>Niveau de Maîtrise</label><input type="number" min="1" max="3" name="system.niveau" value="{{systeme.niveau}}"></div>
+  {{/if}}
+
+  {{#if (eq item.type "classe")}}
+  <div class="lotc-champ">
+    <label>Résumé de la Classe</label>
+    <textarea name="system.resume">{{systeme.resume}}</textarea>
+  </div>
+  {{#each systeme.rangs as |rang index|}}
+  <fieldset class="lotc-rang">
+    <legend>Rang {{rang.rang}}</legend>
+    <div class="lotc-champ"><label>Nom du Rang</label><input type="text" name="system.rangs.{{index}}.nom" value="{{rang.nom}}"></div>
+    <div class="lotc-champ"><label>Prérequis</label><textarea name="system.rangs.{{index}}.prerequis">{{rang.prerequis}}</textarea></div>
+    <div class="lotc-champ"><label>Bonus de création (Rang 1 seulement, généralement)</label><input type="text" name="system.rangs.{{index}}.bonusCreation" value="{{rang.bonusCreation}}"></div>
+    <div class="lotc-champ">
+      <label>Compétences avancées — une par ligne : Nom | phy/con/agi/int/cha/vol | Valeur brute</label>
+      <textarea name="system.rangs.{{index}}.competencesAvancees">{{rang.competencesAvancees}}</textarea>
+    </div>
+    <div class="lotc-champ">
+      <label>Capacités de Classe — une par ligne : Nom | passive/active | Description</label>
+      <textarea name="system.rangs.{{index}}.capacites">{{rang.capacites}}</textarea>
+    </div>
+    <div class="lotc-champ"><label>Dotations</label><textarea name="system.rangs.{{index}}.dotations">{{rang.dotations}}</textarea></div>
+  </fieldset>
+  {{/each}}
+  {{/if}}
+
+  {{#unless (eq item.type "classe")}}
+  <div class="lotc-champ lotc-champ-description">
+    <label>Description</label>
+    <textarea name="system.description">{{systeme.description}}</textarea>
+  </div>
+  {{/unless}}
+
+</section>

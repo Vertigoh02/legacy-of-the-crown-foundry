@@ -1,0 +1,12 @@
+Legacy of the Crown — Système pour Foundry Virtual Tabletop
+
+Code du système : à définir par les auteurs (Pierre Riffart et l'équipe de
+Legacy of the Crown). Une licence permissive (MIT) est recommandée pour le
+code informatique (fichiers .js/.mjs, .hbs, .css, .json de structure),
+séparément des droits sur le contenu du jeu de rôle lui-même (textes des
+règles, Classes, illustrations, univers), qui restent la propriété de
+l'équipe de Legacy of the Crown et ne sont pas concernés par cette licence.
+
+Ce système est un outil non-officiel développé pour permettre de jouer à
+Legacy of the Crown sur Foundry Virtual Tabletop, conformément au Contrat
+de licence limité de Foundry VTT pour le développement de systèmes.

@@ -1,0 +1,11 @@
+{
+  "LOTC.Feuille.Personnage": "Fiche de personnage",
+  "LOTC.Feuille.Objet": "Fiche d'objet",
+  "TYPES.Actor.personnage": "Personnage",
+  "TYPES.Actor.pnj": "PNJ",
+  "TYPES.Item.competence": "Compétence",
+  "TYPES.Item.equipement": "Équipement",
+  "TYPES.Item.arme": "Arme",
+  "TYPES.Item.capacite": "Capacité",
+  "TYPES.Item.maitrise": "Maîtrise"
+}

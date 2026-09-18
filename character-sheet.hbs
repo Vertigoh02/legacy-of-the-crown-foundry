@@ -1,0 +1,236 @@
+<section class="lotc-sheet">
+
+  <header class="lotc-entete">
+    <img class="lotc-portrait" src="{{actor.img}}" data-edit="img" alt="{{actor.name}}">
+    <div class="lotc-identite">
+      <input type="text" name="name" value="{{actor.name}}" placeholder="Nom du personnage">
+      <div class="lotc-identite-ligne">
+        <label>Classe <input type="text" name="system.classe" value="{{systeme.classe}}"></label>
+        <label>Région d'origine <input type="text" name="system.region" value="{{systeme.region}}"></label>
+        <label>Rang <input type="number" name="system.rang" value="{{systeme.rang}}"></label>
+      </div>
+    </div>
+  </header>
+
+  <section class="lotc-bloc lotc-classe">
+    <div class="lotc-bloc-titre">
+      <h2>Classe</h2>
+      <button type="button" data-action="creerObjet" data-type="classe"><i class="fa-solid fa-plus"></i> Classe</button>
+    </div>
+    {{#if classe}}
+    <div class="lotc-classe-active" data-item-id="{{classe.id}}">
+      <strong>{{classe.name}}</strong> — Rang <input type="number" min="1" max="5" name="system.rang" value="{{systeme.rang}}"> / 5
+      <button type="button" data-action="synchroniserClasse" title="Ajouter les Compétences avancées et Capacités du Rang actuel">
+        <i class="fa-solid fa-arrows-rotate"></i> Synchroniser la Classe
+      </button>
+      <button type="button" data-action="modifierObjet" title="Voir la Classe"><i class="fa-solid fa-pen"></i></button>
+      <button type="button" data-action="supprimerObjet" title="Retirer"><i class="fa-solid fa-trash"></i></button>
+    </div>
+    {{else}}
+    <p class="lotc-astuce">Aucune Classe. Glissez un Item de type Classe depuis un Répertoire d'objets, ou créez-en une avec le bouton ci-dessus.</p>
+    {{/if}}
+    <div class="lotc-influence">
+      <span>Niveau de notoriété : <strong>{{systeme.niveauDeNotoriete}}</strong></span>
+      <span>PI total : {{systeme.influence.total}}</span>
+      <span>PI disponibles : {{systeme.influence.disponible}}</span>
+      <button type="button" data-action="ajusterInfluence"><i class="fa-solid fa-star"></i> Gagner / Dépenser des PI</button>
+    </div>
+  </section>
+
+  <section class="lotc-bloc lotc-caracteristiques">
+    <h2>Caractéristiques</h2>
+    <div class="lotc-grille-caracteristiques">
+      {{#each systeme.caracteristiques as |car cle|}}
+      <label class="lotc-caracteristique">
+        <span>{{car.label}}</span>
+        <input type="number" min="0" max="50" name="system.caracteristiques.{{cle}}.value" value="{{car.value}}">
+      </label>
+      {{/each}}
+    </div>
+  </section>
+
+  <section class="lotc-bloc lotc-derivees">
+    <h2>Caractéristiques dérivées</h2>
+    <div class="lotc-grille-derivees">
+      <div class="lotc-jauge">
+        <span>Points de vie</span>
+        <input type="number" name="system.derivees.pv.value" value="{{systeme.derivees.pv.value}}"> / {{systeme.derivees.pv.max}}
+      </div>
+      <div class="lotc-jauge">
+        <span>Endurance</span>
+        <input type="number" name="system.derivees.endurance.value" value="{{systeme.derivees.endurance.value}}"> / {{systeme.derivees.endurance.max}}
+      </div>
+      <div class="lotc-jauge">
+        <span>Stress</span>
+        <input type="number" name="system.derivees.stress.value" value="{{systeme.derivees.stress.value}}"> / {{systeme.derivees.stress.max}}
+      </div>
+      <div class="lotc-jauge">
+        <span>Contamination</span>
+        <input type="number" name="system.derivees.contamination.value" value="{{systeme.derivees.contamination.value}}"> / {{systeme.derivees.contamination.max}}
+      </div>
+      <div class="lotc-statique"><span>Force de frappe</span> {{systeme.derivees.forceDeFrappe.value}}</div>
+      <div class="lotc-statique"><span>Résistance physique</span> {{systeme.derivees.resistancePhysique.value}}</div>
+      <div class="lotc-statique"><span>Vitesse</span> {{systeme.derivees.vitesse.value}} m/Tour</div>
+      <div class="lotc-statique"><span>Encombrement max.</span> {{systeme.derivees.encombrementMax.value}}</div>
+      <div class="lotc-jauge">
+        <span>Chance</span>
+        <input type="number" name="system.chance.value" value="{{systeme.chance.value}}"> / {{systeme.chance.max}}
+      </div>
+    </div>
+  </section>
+
+  <section class="lotc-bloc lotc-competences">
+    <div class="lotc-bloc-titre">
+      <h2>Compétences</h2>
+      <button type="button" data-action="creerObjet" data-type="competence"><i class="fa-solid fa-plus"></i> Compétence</button>
+    </div>
+    <p class="lotc-astuce">Cliquez sur le crayon pour modifier la Valeur brute d'une Compétence, ou sur le D20 pour lancer un Test.</p>
+    <table class="lotc-table-competences">
+      <thead>
+        <tr><th>Compétence</th><th>Caract.</th><th>Val. brute</th><th>Val. réelle</th><th></th></tr>
+      </thead>
+      <tbody>
+        {{#each items as |item|}}
+        {{#if (eq item.type "competence")}}
+        <tr data-item-id="{{item.id}}">
+          <td>{{item.name}}</td>
+          <td>{{item.system.caracteristique}}</td>
+          <td>{{item.system.valeurBrute}}</td>
+          <td><strong>{{item.system.valeurReelle}}</strong></td>
+          <td class="lotc-actions">
+            <button type="button" data-action="rouleCompetence" title="Test de Compétence"><i class="fa-solid fa-dice-d20"></i></button>
+            <button type="button" data-action="modifierObjet" title="Modifier"><i class="fa-solid fa-pen"></i></button>
+            <button type="button" data-action="supprimerObjet" title="Supprimer"><i class="fa-solid fa-trash"></i></button>
+          </td>
+        </tr>
+        {{/if}}
+        {{/each}}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="lotc-bloc lotc-inventaire">
+    <div class="lotc-bloc-titre">
+      <h2>Armes</h2>
+      <button type="button" data-action="creerObjet" data-type="arme"><i class="fa-solid fa-plus"></i> Arme</button>
+    </div>
+    <table class="lotc-table-objets">
+      <tbody>
+        {{#each armes as |item|}}
+        <tr data-item-id="{{item.id}}">
+          <td>{{item.name}}</td>
+          <td>{{item.system.degats}}</td>
+          <td>{{item.system.portee}}</td>
+          <td class="lotc-actions">
+            <button type="button" data-action="attaquer" title="Attaquer la cible sélectionnée"><i class="fa-solid fa-burst"></i></button>
+            <button type="button" data-action="equiperObjet" title="Équiper/Déséquiper"><i class="fa-solid {{#if item.system.equipee}}fa-check{{else}}fa-xmark{{/if}}"></i></button>
+            <button type="button" data-action="modifierObjet"><i class="fa-solid fa-pen"></i></button>
+            <button type="button" data-action="supprimerObjet"><i class="fa-solid fa-trash"></i></button>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+    <div class="lotc-bloc-titre">
+      <h2>Équipement</h2>
+      <button type="button" data-action="creerObjet" data-type="equipement"><i class="fa-solid fa-plus"></i> Objet</button>
+    </div>
+    <table class="lotc-table-objets">
+      <tbody>
+        {{#each equipements as |item|}}
+        <tr data-item-id="{{item.id}}">
+          <td>{{item.name}}</td>
+          <td>x{{item.system.quantite}}</td>
+          <td class="lotc-actions">
+            <button type="button" data-action="modifierObjet"><i class="fa-solid fa-pen"></i></button>
+            <button type="button" data-action="supprimerObjet"><i class="fa-solid fa-trash"></i></button>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="lotc-bloc lotc-capacites">
+    <div class="lotc-bloc-titre">
+      <h2>Capacités</h2>
+      <button type="button" data-action="creerObjet" data-type="capacite"><i class="fa-solid fa-plus"></i> Capacité</button>
+    </div>
+    <ul class="lotc-liste-capacites">
+      {{#each capacites as |item|}}
+      <li data-item-id="{{item.id}}">
+        <strong>{{item.name}}</strong> ({{item.system.type}})
+        <button type="button" data-action="modifierObjet"><i class="fa-solid fa-pen"></i></button>
+        <button type="button" data-action="supprimerObjet"><i class="fa-solid fa-trash"></i></button>
+      </li>
+      {{/each}}
+    </ul>
+
+    <div class="lotc-bloc-titre">
+      <h2>Maîtrises</h2>
+      <button type="button" data-action="creerObjet" data-type="maitrise"><i class="fa-solid fa-plus"></i> Maîtrise</button>
+    </div>
+    <ul class="lotc-liste-capacites">
+      {{#each maitrises as |item|}}
+      <li data-item-id="{{item.id}}">
+        <strong>{{item.name}}</strong> (Niveau {{item.system.niveau}})
+        <button type="button" data-action="modifierObjet"><i class="fa-solid fa-pen"></i></button>
+        <button type="button" data-action="supprimerObjet"><i class="fa-solid fa-trash"></i></button>
+      </li>
+      {{/each}}
+    </ul>
+  </section>
+
+  <section class="lotc-bloc lotc-biographie">
+    <h2>Histoire du personnage</h2>
+    <textarea name="system.biographie">{{systeme.biographie}}</textarea>
+  </section>
+
+  {{#if pratiqueLaMagie}}
+  <section class="lotc-bloc lotc-magie">
+    <div class="lotc-bloc-titre">
+      <h2>Magie (Cartomancien)</h2>
+      <div>
+        <button type="button" data-action="initialiserMagie" title="(Re)construit les 4 paquets selon le Rang actuel et les mélange">
+          <i class="fa-solid fa-shuffle"></i> (Re)mélanger les paquets
+        </button>
+        <button type="button" data-action="nouveauJourMagie" title="Réinitialise le nombre de cartes piochées aujourd'hui">
+          <i class="fa-solid fa-sun"></i> Nouveau jour
+        </button>
+        <button type="button" data-action="sourcesDeMagie" title="Rappel des Sources de Magie (Codex IX, p.220)">
+          <i class="fa-solid fa-circle-question"></i> Sources de Magie
+        </button>
+      </div>
+    </div>
+    <p class="lotc-astuce">Cartes piochées aujourd'hui : {{systeme.magie.cartesTireesAujourdhui}} (limite = dizaine de la Valeur réelle d'Incantation).</p>
+
+    <table class="lotc-table-objets">
+      <thead><tr><th>Sphère</th><th>Pioche</th><th>Défausse</th><th></th></tr></thead>
+      <tbody>
+        {{#each spheres as |nom cle|}}
+        <tr>
+          <td>{{nom}}</td>
+          <td>{{lookup (lookup ../compteurMagie cle) "pioche"}} carte(s)</td>
+          <td>{{lookup (lookup ../compteurMagie cle) "defausse"}} carte(s)</td>
+          <td class="lotc-actions">
+            <button type="button" data-action="piocherCarte" data-sphere="{{cle}}" title="Piocher une carte"><i class="fa-solid fa-hand-sparkles"></i></button>
+            <button type="button" data-action="recupererCarte" data-sphere="{{cle}}" title="Récupérer 1 carte de la Défausse"><i class="fa-solid fa-rotate-left"></i></button>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+    {{#if systeme.magie.carteEnMain}}
+    <div class="lotc-carte-en-main">
+      <strong>Carte en main :</strong> {{systeme.magie.carteEnMain.valeur}} ({{lookup spheres systeme.magie.carteEnMain.sphere}})
+      — choisissez un Sort de ce Niveau de puissance dans le Codex IX, puis :
+      <button type="button" data-action="lancerSort"><i class="fa-solid fa-wand-magic-sparkles"></i> Lancer le Sort</button>
+      <button type="button" data-action="defausserCarte"><i class="fa-solid fa-ban"></i> Ne pas lancer</button>
+    </div>
+    {{/if}}
+  </section>
+  {{/if}}
+
+</section>

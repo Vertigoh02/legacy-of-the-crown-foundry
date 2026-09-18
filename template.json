@@ -1,0 +1,100 @@
+{
+  "Actor": {
+    "types": ["personnage", "pnj"],
+    "templates": {
+      "commun": {
+        "biographie": "",
+        "caracteristiques": {
+          "physique": { "value": 20, "label": "Physique" },
+          "constitution": { "value": 20, "label": "Constitution" },
+          "agilite": { "value": 20, "label": "Agilité" },
+          "intelligence": { "value": 20, "label": "Intelligence" },
+          "charisme": { "value": 20, "label": "Charisme" },
+          "volonte": { "value": 20, "label": "Volonté" }
+        },
+        "derivees": {
+          "pv": { "value": 10, "max": 10 },
+          "forceDeFrappe": { "value": 0 },
+          "resistancePhysique": { "value": 0 },
+          "vitesse": { "value": 6 },
+          "encombrementMax": { "value": 0 },
+          "endurance": { "value": 0, "max": 0 },
+          "stress": { "value": 0, "max": 0 },
+          "contamination": { "value": 0, "max": 0 }
+        },
+        "chance": { "value": 2, "max": 2 },
+        "magie": {
+          "paquetsFavoris": ["coeur", "trefle"],
+          "paquets": {
+            "coeur": { "pioche": [], "defausse": [] },
+            "trefle": { "pioche": [], "defausse": [] },
+            "carreau": { "pioche": [], "defausse": [] },
+            "pique": { "pioche": [], "defausse": [] }
+          },
+          "carteEnMain": null,
+          "cartesTireesAujourdhui": 0
+        }
+      }
+    },
+    "personnage": {
+      "templates": ["commun"],
+      "classe": "",
+      "region": "",
+      "rang": 1,
+      "experience": { "value": 0 },
+      "argent": { "value": 0 },
+      "influence": { "total": 0, "disponible": 0 }
+    },
+    "pnj": {
+      "templates": ["commun"],
+      "role": "",
+      "niveauDeMenace": ""
+    }
+  },
+  "Item": {
+    "types": ["competence", "equipement", "arme", "capacite", "maitrise", "classe"],
+    "competence": {
+      "cle": "",
+      "caracteristique": "physique",
+      "valeurBrute": 0,
+      "estDeBase": true,
+      "description": ""
+    },
+    "equipement": {
+      "quantite": 1,
+      "poids": 0,
+      "prix": 0,
+      "equipe": false,
+      "description": ""
+    },
+    "arme": {
+      "categorie": "corpsACorps",
+      "competenceAssociee": "corpsACorps",
+      "degats": "1d6",
+      "portee": "",
+      "poids": 0,
+      "prix": 0,
+      "equipee": false,
+      "description": ""
+    },
+    "capacite": {
+      "type": "passive",
+      "rang": 1,
+      "description": ""
+    },
+    "maitrise": {
+      "niveau": 1,
+      "description": ""
+    },
+    "classe": {
+      "resume": "",
+      "rangs": [
+        { "rang": 1, "nom": "", "prerequis": "", "bonusCreation": "", "competencesAvancees": "", "capacites": "", "dotations": "" },
+        { "rang": 2, "nom": "", "prerequis": "", "bonusCreation": "", "competencesAvancees": "", "capacites": "", "dotations": "" },
+        { "rang": 3, "nom": "", "prerequis": "", "bonusCreation": "", "competencesAvancees": "", "capacites": "", "dotations": "" },
+        { "rang": 4, "nom": "", "prerequis": "", "bonusCreation": "", "competencesAvancees": "", "capacites": "", "dotations": "" },
+        { "rang": 5, "nom": "", "prerequis": "", "bonusCreation": "", "competencesAvancees": "", "capacites": "", "dotations": "" }
+      ]
+    }
+  }
+}
